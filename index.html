@@ -1,1 +1,43 @@
-<!-- index placeholder -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+  <title>可云</title>
+
+  <!-- 验证逻辑：未通过验证则跳到 verify.html -->
+  <script>
+    const pass = localStorage.getItem("cf_verified");
+    if (!pass && !location.pathname.includes("verify.html")) {
+      location.href = "/verify.html";
+    }
+  </script>
+
+  <!-- 主题样式 -->
+  <link rel="stylesheet" href="/custom-theme.css"/>
+
+  <!-- 移动增强（套餐折叠） -->
+  <script defer src="/js/mobile-enhance.js"></script>
+
+  <!-- UMI 主程序（必须放 HEAD，且不能 defer） -->
+  <script type="module" crossorigin src="/assets/umi.js"></script>
+  <link rel="stylesheet" href="/assets/umi.css"/>
+</head>
+
+<body>
+  <!-- 环境配置 -->
+  <script src="/env.js"></script>
+
+  <!-- React 挂载点（必须是 root） -->
+  <div id="root"></div>
+
+  <!-- ====================== 弹窗系统（适配 UMI） ====================== -->
+  <script src="/js/popup.js"></script>
+
+  <!-- 可云公告弹窗（intro.js，可扩展） -->
+  <script src="/js/intro.js"></script>
+
+  <!-- Cloudflare Insights -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
