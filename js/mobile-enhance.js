@@ -1,1 +1,61 @@
-// mobile enhance placeholder
+(function () {
+  console.log("可云 mobile-enhance.js loaded");
+
+  function waitForPlans() {
+    const cards = document.querySelectorAll(".ant-card-body, .n-card__content");
+    if (cards.length === 0) {
+      requestAnimationFrame(waitForPlans);
+      return;
+    }
+    enhance(cards);
+  }
+
+  function enhance(cards) {
+    cards.forEach((card) => {
+      if (card.dataset.enhanced === "1") return;
+
+      const lines = Array.from(card.querySelectorAll("li, p, div"));
+      if (lines.length < 5) return;
+
+      const collapseBox = document.createElement("div");
+      collapseBox.style.maxHeight = "120px";
+      collapseBox.style.overflow = "hidden";
+      collapseBox.style.transition = "max-height 0.25s ease";
+      collapseBox.className = "ky-collapse-box";
+
+      const wrapper = document.createElement("div");
+      lines.forEach((l) => wrapper.appendChild(l.cloneNode(true)));
+      collapseBox.appendChild(wrapper);
+
+      lines.forEach((l) => l.remove());
+      card.prepend(collapseBox);
+
+      const btn = document.createElement("div");
+      btn.innerText = "展开详情 ▼";
+      btn.style.marginTop = "8px";
+      btn.style.color = "#FF68A0";
+      btn.style.fontSize = "14px";
+      btn.style.fontWeight = "500";
+      btn.style.cursor = "pointer";
+      btn.style.textAlign = "center";
+
+      let expanded = false;
+      btn.onclick = () => {
+        expanded = !expanded;
+        if (expanded) {
+          collapseBox.style.maxHeight = wrapper.scrollHeight + "px";
+          btn.innerText = "收起详情 ▲";
+        } else {
+          collapseBox.style.maxHeight = "120px";
+          btn.innerText = "展开详情 ▼";
+        }
+      };
+
+      card.appendChild(btn);
+      card.dataset.enhanced = "1";
+    });
+  }
+
+  waitForPlans();
+})();
+
