@@ -1,1 +1,17 @@
-<!-- verify placeholder -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>验证中...</title>
+</head>
+
+<body style="font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;background:#f7f7f7;">
+  <h2>正在验证，请稍候…</h2>
+
+  <script>
+    localStorage.setItem("cf_verified", "1");
+    setTimeout(() => location.href = "/", 800);
+  </script>
+</body>
+</html>
