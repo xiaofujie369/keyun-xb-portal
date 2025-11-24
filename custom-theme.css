@@ -1,1 +1,13 @@
-/* theme */
+:root {
+  --ky-pink: #ff68a0;
+}
+
+a {
+  color: var(--ky-pink);
+}
+
+button, .btn {
+  background: var(--ky-pink) !important;
+  color: #fff !important;
+  border: none !important;
+}
