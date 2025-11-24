@@ -1,8 +1,8 @@
 (function () {
   console.log("可云 Popup loaded");
 
-  const FIRST_DELAY = 3000;     // 第一次延迟弹窗（3秒）
-  const CLICK_WINDOW = 60000;   // 第二次触发窗口（60秒）
+  const FIRST_DELAY = 3000;      // 第一次弹窗延迟
+  const CLICK_WINDOW = 60000;    // 第二次弹窗点击窗口 60s
 
   let firstDone = false;
   let secondDone = false;
@@ -78,13 +78,4 @@
       if (!secondDone && !popupVisible) {
         showPopup();
       }
-      document.removeEventListener("click", handler);
-    };
-
-    document.addEventListener("click", handler);
-    setTimeout(() => document.removeEventListener("click", handler), CLICK_WINDOW);
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
-      if (!firstDone) showPopup()
+      document.removeEve
